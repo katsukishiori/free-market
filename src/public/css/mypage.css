@@ -1,0 +1,234 @@
+.icon-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden; /* 枠からはみ出た部分を隠す */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 枠に合わせて画像を表示、はみ出た部分を隠す */
+}
+
+.default-img {
+  width: 100%; /* 親要素の幅に合わせる */
+  height: 100%; /* 親要素の高さに合わせる */
+  border-radius: 50%;
+  background-color: #ccc; /* グレーの背景色 */
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 要素を水平方向に中央寄せ */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+.user-name {
+  display: flex;
+  align-items: center;
+  margin-right: 300px;
+}
+
+.user-name p {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.edit-profile-button {
+  background-color: #fff;
+  color: #EC615C;
+  border: 1px solid #EC615C;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.area {
+  width: 100%;
+}
+
+.tab_class {
+  width: 10%;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 3px;
+  margin-left: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  box-sizing: border-box;
+}
+
+.tab-container {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  border-bottom: 1px solid #000;
+}
+
+.tab_class:hover {
+  background-color: #f0f0f0;
+}
+
+/* ラジオボタンを非表示 */
+input[type="radio"] {
+  display: none;
+}
+
+.content_class {
+  display: none;
+  padding: 20px 0;
+}
+
+/* タブが選択されたときのスタイル */
+#tab1:checked + .tab_class[for="tab1"] {
+  border-bottom-color: #000;
+  color: #EC615C;
+}
+
+#tab2:checked + .tab_class[for="tab2"] {
+  border-bottom-color: #000;
+  color: #EC615C;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2 {
+  display: block;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 列の数を5に設定 */
+  grid-gap: 50px; /* 画像の間に余白を設定 */
+}
+
+.image-container img {
+  margin-top: 50px;
+  width: 150px; /* 画像の幅を200pxに指定 */
+  height: 200px; /* 画像の高さを200pxに指定 */
+}
+
+@media (max-width: 768px) and (min-device-height: 768px) {
+  .user-name {
+    margin-right: 100px;
+  }
+
+  .user-name h1 {
+    font-size: 25px;
+  }
+
+  .tab_class {
+    width: 100px;
+    font-size: 10px;
+    margin-left: 10px;
+  }
+
+  .image-container {
+    grid-template-columns: repeat(5, 1fr);
+    width: 100px;
+    margin-left: 20px;
+  }
+
+  .image-container a {
+    width: 100px;
+  }
+
+  .image-container img {
+    width: 100px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 430px) {
+  .user-name {
+    margin-right: 40px;
+  }
+
+  .user-name h1 {
+    font-size: 20px;
+  }
+
+  .icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden; /* 枠からはみ出た部分を隠す */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .edit-profile-button {
+    width: 100%;
+    font-size: 10px;
+    padding-right: 10px;
+  }
+
+  .tab_class {
+    width: 80px;
+    font-size: 8px;
+    margin-left: 5px;
+  }
+
+  .image-container {
+    grid-template-columns: repeat(3, 1fr)!important;
+    width: 100px;
+    margin-left: 20px;
+  }
+
+  .image-container a {
+    width: 100px;
+  }
+
+  .image-container img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 375px) {
+  .user-name {
+    margin-right: 20px;
+  }
+
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-name h1 {
+    font-size: 15px;
+  }
+
+.image-container {
+    width: 150px;
+    margin-left: 5px;
+  }
+
+.edit-profile-button {
+    width: 100%;
+    font-size: 8px;
+    padding-right: 7px;
+  }
+}
+

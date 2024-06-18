@@ -1,0 +1,147 @@
+.header {
+  background: #000;
+}
+
+.header__inner {
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+.header-utilities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  width: 60%;
+}
+
+.header__logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+.form__input--text {
+  flex-grow: 1; /* 検索バーをできるだけ広く */
+}
+
+.form__input--text input {
+  width: 70%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  padding-right: 20px;
+}
+
+nav.nav {
+  width: 100%;
+}
+
+ul.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header-nav__link--mypage {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--login {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--register {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--item {
+  color: #000;
+  text-decoration: none;
+}
+
+.header-nav__item:nth-child(3) {
+  border: 1px solid #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.header-nav__button {
+  align-items: center;
+  margin-top: 2px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+form {
+  margin: 0px;
+}
+
+@media (max-width: 768px) and (min-device-height: 768px) {
+  .header__logo {
+    font-size: 10px;
+    margin: auto;
+  }
+
+  .form__input--text input {
+    font-size: 10px;
+    margin-left: 10px;
+  }
+
+  .header-nav {
+    width: 30%;
+    font-size: 10px;
+  }
+
+  .header-nav__button {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 430px) {
+  .header-utilities {
+    width: 100%;
+  }
+
+  .left-section, .right-section {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .form__input--text input {
+    width: 90%;
+  }
+
+  ul.header-nav {
+    margin: 5px 0px;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-utilities {
+    display: flex;
+    flex-direction: column;
+  }
+}

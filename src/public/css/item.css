@@ -1,0 +1,196 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  width: 100%;
+}
+
+@media (max-width: 430px) {
+  .flex {
+  margin-top: 30px;
+  }
+}
+
+.box {
+  background-color: #fff;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+  width: 35%;
+  height: 500px;
+}
+
+.box__left {
+  padding-right: 50px;
+}
+
+@media (max-width: 430px) {
+  .box__left {
+  padding-left: 20px;
+  }
+}
+
+.image-container img {
+  padding-top: 20px;
+  width: 100%;
+  height: 300px;
+}
+
+@media (max-width: 430px) {
+  .image-container img {
+  padding-top: 20px;
+  height: 150px;
+  }
+}
+
+.box__right {
+  padding-left: 50px;
+}
+
+@media (max-width: 375px) {
+  .box__left {
+  padding-right: 15px;
+  }
+}
+
+@media (max-width: 430px) {
+  .box__right {
+  width: 60%;
+  padding-left: 10px;
+  }
+}
+
+
+
+.item-name {
+  line-height: 10px;
+}
+
+@media (max-width: 430px) {
+  .item-name h1 {
+  font-size: 25px;
+  }
+  .item-name p {
+  font-size: 10px;
+  }
+}
+
+.form__button {
+  margin-top: 20px;
+  padding: 5px;
+  width: 80%;
+  height: 30px;
+  border-radius: 3px;
+  text-align: center;
+  background: #EC615C;
+  cursor: pointer;
+}
+
+@media (max-width: 430px) {
+  .form__button {
+  margin-top: 20px;
+  height: 25px;
+  padding: 2px;
+  }
+}
+
+.form__button-submit {
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 430px) {
+  .form__button-submit {
+  font-size: 12px;
+  }
+}
+
+
+.item-price p {
+  font-size: 20px;
+}
+
+@media (max-width: 430px) {
+  .item-price p {
+  font-size: 15px;
+  }
+}
+
+
+button.like-btn {
+  background-color: transparent; /* 背景色を透明にする */
+  border: none; /* 枠を削除する */
+  padding: 0; /* 余白を削除する */
+  font-size: 25px;
+}
+
+@media (max-width: 430px) {
+  button.like-btn {
+  font-size: 20px;
+  }
+}
+
+button.comment-btn {
+  background-color: transparent; /* 背景色を透明にする */
+  border: none; /* 枠を削除する */
+  padding: 0; /* 余白を削除する */
+  font-size: 25px;
+}
+
+@media (max-width: 430px) {
+  button.comment-btn {
+  font-size: 20px;
+  }
+}
+
+.button-container {
+  display: flex; /* フレックスボックスに設定 */
+  gap: 50px; /* ボタン間の間隔を設定（オプション） */
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
+@media (max-width: 430px) {
+  .button-container {
+  gap: 20px;
+  }
+}
+
+.item-description {
+  padding-bottom: 30px;
+}
+
+@media (max-width: 430px) {
+  .item-description h2 {
+  font-size: 20px;
+  }
+  .item-description p {
+  font-size: 15px;
+  }
+}
+
+@media (max-width: 430px) {
+  .item-information h2 {
+  font-size: 20px;
+  }
+}
+
+
+table td {
+  padding: 20px 50px;
+}
+
+@media (max-width: 430px) {
+  table td {
+  width: 50%;
+  padding: 10px 5px;
+  }
+  table th {
+  width: 50%;
+  font-size: 13px;
+  text-align: left;
+  }
+}
+
+
+
+

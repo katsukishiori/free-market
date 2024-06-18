@@ -1,0 +1,318 @@
+.header {
+  background: #000;
+}
+
+.header__inner {
+  margin: 0 auto;
+  padding: 5px 10px;
+  max-width: 2500px;
+}
+
+.header-utilities {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__logo {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.form__input--text input {
+  padding: 10px;
+  margin-left: 20px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  appearance: none;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  width: 25%;
+  padding-right: 20px;
+}
+
+.header-utilities nav {
+  width: 100%;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-nav__link--mypage {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--login {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--register {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header-nav__link--item {
+  color: #000;
+  text-decoration: none;
+}
+
+.header-nav__item:nth-child(3) {
+  border: 1px solid #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.header-nav__button {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.box__left {
+  margin-right: 10px;
+  padding-left: 30px;
+  font-size: 15px;
+  width: 50%;
+  height: 500px;
+}
+
+.content{
+  width: 100%;
+  margin: 20px 0px;
+}
+.content-item {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.box__right {
+  width: 40%;
+}
+
+table.item-top {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: none;
+}
+
+table.item-top, td {
+  padding-left: 40px;
+}
+
+.image-container img {
+  padding-top: 20px;
+  width: 150px;
+  height: 200px;
+}
+
+.item-name,
+.item-price {
+  position: relative; /* 相対位置指定 */
+  top: -30px;
+}
+
+.item-name  {
+  font-size: 10px;
+}
+
+.item-price p {
+  font-size: 15px;
+}
+
+.item-description {
+  padding-bottom: 30px;
+}
+
+table.purchase {
+  height: 280px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #A9A9A9;
+}
+
+.purchase th {
+  text-align: left;
+}
+
+.purchase th,
+.purchase td {
+  padding: 20px;
+}
+
+.form__button {
+  padding: 5px;
+  margin-top: 50px;
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  background: #EC615C;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form__button-submit {
+  text-decoration: none;
+  color: #fff;
+  background-color: #EC615C;
+  border: none;
+}
+
+
+.item-bottom td {
+  text-align: right; /* テキストを右寄せ */
+}
+
+@media (max-width: 768px) and (min-device-height: 768px) {
+  .header__logo {
+    font-size: 15px;
+    margin: auto;
+  }
+
+  .form__input--text input {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+
+  .header-nav {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .right-section {
+    width: 40%;
+  }
+}
+
+@media (max-width: 430px) {
+  .header__logo {
+    font-size: 13px;
+  }
+
+  li.header-nav__item {
+    padding: 5px;
+    font-size: 10px;
+    width: 100%;
+  }
+
+  li.header-nav__item:nth-child(3) {
+    padding: 5px;
+    text-align: center;
+  }
+
+  .left-section{
+    width: 50%;
+  }
+
+  .right-section{
+    width: 50%;
+    padding: 0px;
+  }
+
+  .form__input--text input {
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 10px;
+  }
+
+  .header-nav__button {
+    font-size: 10px;
+  }
+
+  ul.header-nav {
+    margin: 5px 0px;
+  }
+
+  .flex {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .box__left {
+    width: 80%;
+    height: auto;
+    margin-right: 0; /* 横並び時の余白をリセット */
+    padding-left: 0; /* 横並び時の余白をリセット */
+  }
+
+  .box__right {
+    width: 80%;
+    margin-bottom: 20px; /* 縦並び時の間隔を追加 */
+  }
+
+  .item-top {
+    width: 30%;
+  }
+
+  table.item-top, th {
+    width: 20px;
+  }
+
+  .image-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .item-name h1 {
+    width: 100px;
+    }
+
+  .purchase td {
+    width: 50%;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-utilities {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-section, .right-section {
+    width: 100%;
+  }
+
+  .form__input--text input {
+    width: 90%;
+  }
+}
+
+
+
+
