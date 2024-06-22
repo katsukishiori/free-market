@@ -10,6 +10,8 @@ class Manager extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'managers';
+
     protected $fillable = [
         'user_id',
         'shop_name',

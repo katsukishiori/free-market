@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\CategoryItem;
 use App\Models\Condition;
 use App\Http\Requests\ItemsRequest;
+use App\Models\RoleUser;
 use Illuminate\Support\Facades\Log;
 
 
@@ -19,6 +20,7 @@ class ItemController extends Controller
     {
         $items = Item::all();
         $items = Item::where('id', '!=', 999)->get();
+
         return view('product_list', compact('items'));
     }
 
@@ -35,15 +37,18 @@ class ItemController extends Controller
 
         // 商品のconditionを取得
         $condition = $item->condition->name;
+
+        $roleUser = RoleUser::where('user_id', $item->user_id)->first();
+
         // 商品情報とカテゴリをビューに渡す
-        return view('item', compact('item', 'category', 'condition'));
+        return view('item', compact('item', 'category', 'condition', 'roleUser'));
     }
 
     public function sellView()
     {
         $categories = Category::all();
         $conditions = Condition::all();
-    return view('sell', ['categories' => $categories, 'conditions' => $conditions]);
+        return view('sell', ['categories' => $categories, 'conditions' => $conditions]);
     }
 
     public function sellCreate(ItemsRequest $request)
@@ -82,7 +87,7 @@ class ItemController extends Controller
         $item->name = $validatedData['name'];
         $item->description = $validatedData['description'];
         $item->price = $validatedData['price'];
-        $item->user_id = Auth::id(); // ユーザーのIDを設定
+        $item->user_id = Auth::id();
         $item->id = $newItemId;
         $item->save();
 
@@ -92,7 +97,9 @@ class ItemController extends Controller
         $categoryItem->category_id = $validatedData['category'];
         $categoryItem->save();
 
-        // 成功時のリダイレクト
-        return redirect('/sell')->with('success', '商品が出品されました！');
+        // 成功メッセージをセッションに保存
+        session()->flash('success', '商品が出品されました。');
+
+        return redirect('/'); // 必要に応じて適切なリダイレクト先を設定
     }
 }

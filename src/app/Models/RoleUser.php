@@ -17,4 +17,10 @@ class RoleUser extends Model
         'user_id',
         'role_id',
         'manager_id'];
+
+    public function manager()
+    {
+        // role_userテーブルのmanager_idとmanagersテーブルのidを結びつける
+        return $this->belongsTo(Manager::class, 'manager_id');
+    }
 }

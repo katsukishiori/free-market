@@ -25,7 +25,7 @@ class ItemsRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'price' => ['required', 'string', 'numeric'],
+            'price' => ['required', 'string'],
             'description' => ['required', 'min:20'],
             'img_url' => ['required'],
             'category' => ['required'],

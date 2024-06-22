@@ -15,7 +15,11 @@
         <div class="box__right">
             <div class="item-name">
                 <h1><?php echo e($item->name); ?></h1>
-                <p>COACHTECH</p>
+                <?php if(isset($roleUser) && $roleUser->manager): ?>
+                <p><?php echo e($roleUser->manager->shop_name); ?></p>
+                <?php else: ?>
+                <p></p>
+                <?php endif; ?>
             </div>
             <div class="item-price">
                 <p>¥<?php echo e(number_format($item->price)); ?>(値段)</p>

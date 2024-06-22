@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\Role;
 use App\Mail\InviteManagerMail;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+
 
 class ManagerController extends Controller
 {

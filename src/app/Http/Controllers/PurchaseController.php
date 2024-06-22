@@ -8,13 +8,14 @@ use App\Http\Requests\AddressRequest;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Models\Address;
-use Illuminate\Support\Facades\Log;
+
 
 class PurchaseController extends Controller
 {
     public function index($id)
     {
         $item = Item::findOrFail($id);
+
         return view('purchase', ['item_id' => $id, 'item' => $item]);
     }
 
@@ -31,10 +32,10 @@ class PurchaseController extends Controller
         return redirect()->route('mypage')->with('success', '商品を購入しました。');
     }
 
-
     public function address($id)
     {
         $item = Item::findOrFail($id);
+
         return view('address_change', ['item' => $item, 'item_id' => $item->id]);
     }
 

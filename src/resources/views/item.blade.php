@@ -17,7 +17,11 @@
         <div class="box__right">
             <div class="item-name">
                 <h1>{{ $item->name }}</h1>
-                <p>COACHTECH</p>
+                @if(isset($roleUser) && $roleUser->manager)
+                <p>{{ $roleUser->manager->shop_name }}</p>
+                @else
+                <p></p>
+                @endif
             </div>
             <div class="item-price">
                 <p>¥{{ number_format($item->price) }}(値段)</p>
