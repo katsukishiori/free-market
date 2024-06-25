@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Item;
+use App\Models\Condition;
 
 class ItemFactory extends Factory
 {
@@ -17,8 +19,8 @@ class ItemFactory extends Factory
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
             'price' => $this->faker->numberBetween(100, 10000),
-            'user_id' => \App\Models\User::factory(), // ここでユーザーファクトリーを使います
-            'condition_id' => 1,
+            'user_id' => \App\Models\User::factory(),
+            'condition_id' => Condition::factory()->create()->id, // Condition モデルのファクトリーを使用してランダムな condition_id を設定
             'img_url' => 'default.jpg',
         ];
     }

@@ -34,7 +34,8 @@
             <input type="radio" name="tab_name" id="tab2">
             <label class="tab_class" for="tab2">購入した商品</label>
         </div>
-        <div class="content_class">
+
+        <div class="content_class" id="content1">
             <div class="image-container">
                 @foreach($items as $item)
                 <div>
@@ -45,7 +46,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="content_class">
+        <div class="content_class" id="content2">
             <div class="image-container">
                 @foreach($soldItems as $soldItem)
                 @if ($soldItem->item) <!-- 関連する item が存在する場合のみ表示 -->

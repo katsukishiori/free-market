@@ -27,11 +27,6 @@ class ManagerController extends Controller
         return view('manager', compact('users'));
     }
 
-    public function showLinkRequestForm()
-    {
-        return view('auth.register_invited');
-    }
-
     public function sendInviteManagerEmail(Request $request)
     {
         $request->validate([
@@ -84,14 +79,12 @@ class ManagerController extends Controller
 
     public function registerInvitedUser(Request $request, $token)
     {
-        // バリデーションルール
         $rules = [
             'shop_name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ];
 
-        // バリデーションの実行
         $request->validate($rules);
 
         // ユーザーを作成
@@ -103,15 +96,15 @@ class ManagerController extends Controller
         // マネージャー情報を作成し、そのIDを取得
         $manager = Manager::create([
             'shop_name' => $request->input('shop_name'),
-            'user_id' => $user->id, // 必要に応じてマネージャーとユーザーの関連付けを行う
+            'user_id' => $user->id,
         ]);
 
-        // ユーザーに役割を割り当てる（例えば、role_idが2の役割を割り当てる）
-        $role = Role::find(2); // ここで適切な役割IDを指定します
+        // ユーザーに役割を割り当てる
+        $role = Role::find(2);
         $user->roles()->attach($role->id, ['manager_id' => $manager->id]);
 
         session()->flash('success', '登録されました！');
-        // リダイレクトやレスポンスを返すなどの適切な処理を追加します
+
         return view('auth.register_invited', ['token' => $token]);
     }
 

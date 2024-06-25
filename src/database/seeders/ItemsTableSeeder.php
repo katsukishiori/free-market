@@ -19,8 +19,8 @@ class ItemsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'name' => 'スニーカー',
-            'price' => 5500,
-            'description' => 'カラー：ブルー',
+            'price' => 3500,
+            'description' => 'カラー：ブルー<br>購入後、即発送いたします。',
             'img_url' => 'sneaker.jpg',
         ];
         DB::table('items')->insert($item);
@@ -30,7 +30,7 @@ class ItemsTableSeeder extends Seeder
             'condition_id' => 2,
             'name' => '腕時計',
             'price' => 50000,
-            'description' => 'カラー：ブルー',
+            'description' => 'カラー：ブルー\n購入後、即発送いたします。',
             'img_url' => 'clock.jpg',
         ];
         DB::table('items')->insert($item);
@@ -40,7 +40,7 @@ class ItemsTableSeeder extends Seeder
             'condition_id' => 1,
             'name' => '指輪',
             'price' => 12000,
-            'description' => 'ダイヤモンドが使用されています。',
+            'description' => '8号です。\n購入後、即発送いたします。',
             'img_url' => 'ring.jpg',
         ];
         DB::table('items')->insert($item);
@@ -48,9 +48,9 @@ class ItemsTableSeeder extends Seeder
             'id' => 4,
             'user_id' => 1,
             'condition_id' => 1,
-            'name' => 'イヤリング',
+            'name' => 'ピアス',
             'price' => 3300,
-            'description' => 'カラー：ブルー',
+            'description' => 'カラー：ブルー\n購入後、即発送いたします。',
             'img_url' => 'earring.jpg',
         ];
         DB::table('items')->insert($item);
@@ -60,7 +60,7 @@ class ItemsTableSeeder extends Seeder
             'condition_id' => 1,
             'name' => 'バッグ',
             'price' => 18000,
-            'description' => '革が使われています。',
+            'description' => 'カラー：ホワイト\n購入後、即発送いたします。',
             'img_url' => 'bag.jpg',
         ];
         DB::table('items')->insert($item);
@@ -69,8 +69,8 @@ class ItemsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'name' => '香水',
-            'price' => 7000,
-            'description' => 'シトラスの香りです。',
+            'price' => 2900,
+            'description' => 'シトラスの香りです。\n購入後、即発送いたします。',
             'img_url' => 'perfume.jpg',
         ];
         DB::table('items')->insert($item);
@@ -79,8 +79,8 @@ class ItemsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'name' => 'トースター',
-            'price' => 25000,
-            'description' => 'カラー：ホワイト',
+            'price' => 15000,
+            'description' => 'カラー：ホワイト\n購入後、即発送いたします。',
             'img_url' => 'toaster.jpg',
         ];
         DB::table('items')->insert($item);
@@ -89,8 +89,8 @@ class ItemsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'name' => 'ロードバイク',
-            'price' => 300000,
-            'description' => 'カラー：ブルー',
+            'price' => 320000,
+            'description' => 'カラー：ブルー\n購入後、即発送いたします。',
             'img_url' => 'road-bike.jpg',
         ];
         DB::table('items')->insert($item);
@@ -99,8 +99,8 @@ class ItemsTableSeeder extends Seeder
             'user_id' => 1,
             'condition_id' => 1,
             'name' => '椅子',
-            'price' => 53000,
-            'description' => 'カラー：グレー',
+            'price' => 4800,
+            'description' => 'カラー：ホワイト\n購入後、即発送いたします。',
             'img_url' => 'chair.jpg',
         ];
         DB::table('items')->insert($item);
@@ -110,7 +110,7 @@ class ItemsTableSeeder extends Seeder
             'condition_id' => 1,
             'name' => 'カメラ',
             'price' => 103000,
-            'description' => 'カラー：ブラック',
+            'description' => 'カラー：ブラック\n購入後、即発送いたします。',
             'img_url' => 'camera.jpg',
         ];
         DB::table('items')->insert($item);
@@ -120,7 +120,7 @@ class ItemsTableSeeder extends Seeder
             'condition_id' => 1,
             'name' => 'カメラ',
             'price' => 103000,
-            'description' => 'カラー：ブラック',
+            'description' => 'カラー：ブラック\n購入後、即発送いたします。',
             'img_url' => 'camera.jpg',
         ];
         DB::table('items')->insert($item);

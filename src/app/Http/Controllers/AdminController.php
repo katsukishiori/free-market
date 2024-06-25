@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     public function messages(Request $request)
     {
-        $query = Comment::query();
+        $query = Comment::query()->with('user'); // ユーザーリレーションを事前に読み込む
 
         if ($request->has('user') && $request->user != '') {
             $query->whereHas('user', function ($q) use ($request) {
@@ -52,7 +52,7 @@ class AdminController extends Controller
         }
 
         // フィルタリングされたコメントを商品ごとにグループ化
-        $comments = $query->with(['user', 'item'])->get()->groupBy('item_id');
+        $comments = $query->with(['user', 'item'])->get();
 
         return view('messages', compact('comments'));
     }

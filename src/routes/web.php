@@ -51,11 +51,6 @@ Route::middleware(['auth', 'checkRole:2'])->group(function () {
     Route::delete('/manager/delete/{id}', [ManagerController::class, 'delete'])->name('manager.delete');
 });
 
-// Route::get('/debug', function () {
-//     $user = Auth::user();
-//     dd($user->roles);
-// });
-
 // 認証不要のルート
 Route::get('/login', [AuthController::class, 'index']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -68,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
     Route::get('/mypage/profile', [UserController::class, 'profile']);
     Route::post('/mypage/profile', [UserController::class, 'updateProfile']);
-    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('update.address');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'updateAddress'])->name('purchase.update.address');
     Route::post('/item/like/{item_id}', [LikeController::class, 'create'])->name('like');
     Route::post('/item/unlike/{item_id}', [LikeController::class, 'destroy'])->name('unlike');
     Route::get('/item/comment/{id}', [CommentController::class, 'index']);
@@ -76,4 +71,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/item/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
     Route::get('/sell', [ItemController::class, 'sellView']);
     Route::post('/sell', [ItemController::class, 'sellCreate'])->name('sell.create');
+
+    Route::get('/test-sanitize', function () {
+        if (function_exists('sanitize_br')) {
+            return 'Function sanitize_br exists!';
+        } else {
+            return 'Function sanitize_br does NOT exist!';
+        }
+    });
 });

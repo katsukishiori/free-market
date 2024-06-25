@@ -32,7 +32,8 @@
             <input type="radio" name="tab_name" id="tab2">
             <label class="tab_class" for="tab2">購入した商品</label>
         </div>
-        <div class="content_class">
+
+        <div class="content_class" id="content1">
             <div class="image-container">
                 <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div>
@@ -43,7 +44,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
-        <div class="content_class">
+        <div class="content_class" id="content2">
             <div class="image-container">
                 <?php $__currentLoopData = $soldItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $soldItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($soldItem->item): ?> <!-- 関連する item が存在する場合のみ表示 -->

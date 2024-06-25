@@ -40,6 +40,8 @@ class ItemController extends Controller
 
         $roleUser = RoleUser::where('user_id', $item->user_id)->first();
 
+        $item->description = str_replace("\n", '<br>', $item->description);
+
         // 商品情報とカテゴリをビューに渡す
         return view('item', compact('item', 'category', 'condition', 'roleUser'));
     }
@@ -60,35 +62,40 @@ class ItemController extends Controller
         if ($request->hasFile('img_url')) {
             // 画像の保存
             $image = $request->file('img_url');
-            $filename = time() . '.jpg'; // ファイル名をタイムスタンプ.jpgに設定
+            $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/images', $filename);
-            $imagePath =  $filename; // 保存パスを設定
+            // データベースに保存する画像パスを設定
+            $imagePath = $filename; // 例：123456789.jpg
         } else {
             // 画像がない場合はバリデーションエラーを返す
             return redirect()->back()->withInput()->withErrors(['img_url' => '画像を選択してください']);
         }
 
-        $maxId = Item::where(
-            'id',
-            '<>',
-            999
-        )->max('id');
-        $newItemId = ($maxId < 999) ? $maxId + 1 : 11;
+        // 現在の最大の id を取得
+        $maxId = Item::where('id', '<>', 999)->max('id');
 
-        // もし新しい shop_id が1000以上であれば、21に設定する
-        if ($newItemId >= 999) {
-            $newItemId = 11;
+        // 新しい id を決定
+        $newItemId = ($maxId < 999) ? $maxId + 1 : 1;
+
+        // もし新しいidがすでに存在する場合、次の利用可能なidを探す
+        while (Item::where('id', $newItemId)->exists()) {
+            $newItemId++;
+            // 新しい id が 999 未満であることを確認
+            if ($newItemId >= 999) {
+                $newItemId = 1; // 1 から再スタート
+            }
         }
+
 
         // 商品情報の保存
         $item = new Item();
+        $item->id = $newItemId;
         $item->img_url = $imagePath;
         $item->condition_id = $validatedData['condition'];
         $item->name = $validatedData['name'];
         $item->description = $validatedData['description'];
         $item->price = $validatedData['price'];
         $item->user_id = Auth::id();
-        $item->id = $newItemId;
         $item->save();
 
         // category_itemテーブルに保存
@@ -100,6 +107,6 @@ class ItemController extends Controller
         // 成功メッセージをセッションに保存
         session()->flash('success', '商品が出品されました。');
 
-        return redirect('/'); // 必要に応じて適切なリダイレクト先を設定
+        return redirect('/sell'); // 必要に応じて適切なリダイレクト先を設定
     }
 }
