@@ -16,6 +16,8 @@ use App\Models\Category;
 use App\Models\CategoryItem;
 use App\Models\Condition;
 
+
+
 class ItemTest extends TestCase
 {
     /**
@@ -23,6 +25,11 @@ class ItemTest extends TestCase
      *
      * @return void
      */
+
+    use RefreshDatabase;
+
+
+
     public function testIndex()
     {
         // テスト用のデータを作成
@@ -81,6 +88,8 @@ class ItemTest extends TestCase
         $response->assertViewHas('condition', $item->condition->name);
     }
 
+
+
     public function testSellCreate()
     {
         /** @var Authenticatable $user */
@@ -88,20 +97,23 @@ class ItemTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user);
 
-        // ダミーファイルを生成
-        $file = UploadedFile::fake()->create('test.jpg', 500); // 500 KBのダミーの画像ファイルを作成
+        $file = File::create('avatar.jpg', 200, 200);
 
+        // 必要なデータをデータベースに作成
+        $category = Category::factory()->create();
+        $condition = Condition::factory()->create();
 
+        // テスト用のリクエストデータを準備します
         $requestData = [
             'name' => 'テスト商品',
             'description' => 'この商品は20文字以上のテスト商品です。',
             'price' => '1000',
-            'condition' => 1,
-            'category' => 1,
-            'img_url' => $file, // ダミーの画像ファイル
+            'category' => $category->id, // テストで使用するカテゴリーのID
+            'condition' => $condition->id, // テストで使用する商品状態のID
+            'img_url' => $file,
         ];
 
-        // 商品出品リクエストを送信
+        // 商品出品リクエストを送信します
         $response = $this->post('/sell', $requestData);
 
         // バリデーションエラーがないことを確認
@@ -112,6 +124,19 @@ class ItemTest extends TestCase
 
         // 成功メッセージがセッションに含まれていることを確認
         $this->assertEquals('商品が出品されました。', session('success'));
+
+        // 商品が実際にデータベースに保存されたかを確認
+        $this->assertDatabaseHas('items', [
+            'name' => 'テスト商品',
+            'description' => 'この商品は20文字以上のテスト商品です。',
+            'price' => '1000',
+            'user_id' => $user->id,
+        ]);
+
+        // カテゴリーアイテムが正しく保存されたかを確認
+        $this->assertDatabaseHas('category_item', [
+            'category_id' => $category->id,
+        ]);
     }
 
     public function testSellView()

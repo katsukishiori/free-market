@@ -15,11 +15,13 @@ class CommentTest extends TestCase
      *
      * @return void
      */
+
+    use RefreshDatabase;
+
     public function testIndex()
     {
         // テスト用のアイテムとコメントを作成
-        $item = Item::factory()->create();
-        $comments = Comment::factory()->count(5)->create(['item_id' => $item->id]);
+        $item = Item::factory()->create(); // Item のファクトリーを使用して作成
 
         // indexメソッドにGETリクエストを送信
         $response = $this->get("/item/comment/{$item->id}");
