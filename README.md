@@ -32,15 +32,16 @@ phpMyAdmin:http://localhost:8080/
      docker-compose up -d --build      
   
 ### 3.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
-  #### PHPコンテナへのログイン
+  #### ◇PHPコンテナへのログイン
     docker-compose exec php bash    
   
   #### Laravelアプリケーションの依存関係をインストール  
      composer update    
 
   #### 環境変数の設定
-  env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。
-     cp .env.example .env    
+  env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。  
+      cp .env.example .env  
+  
   DB_CONNECTION=mysql  
   DB_HOST=mysql  
   DB_PORT=3306  
