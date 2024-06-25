@@ -26,7 +26,7 @@ phpMyAdmin:http://localhost:8080/
 ## ER図  
 ## 環境構築  
 ### 1.リポジトリをクローンします。    
-     git clone https://github.com/katsukishiori/free-market      
+     git clone https://github.com/katsukishiori/free-market.git        
   
 ### 2.Dockerコンテナを起動します。  
      docker-compose up -d --build      
@@ -40,8 +40,8 @@ phpMyAdmin:http://localhost:8080/
 
   #### ◇環境変数の設定
   env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。  
-      cp .env.example .env   
-  
+       cp .env.example .env   
+    
   DB_CONNECTION=mysql  
   DB_HOST=mysql  
   DB_PORT=3306  
