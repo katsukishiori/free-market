@@ -41,7 +41,13 @@ phpMyAdmin:http://localhost:8080/
   #### 環境変数の設定
   env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。
      cp .env.example .env    
-  
+  DB_CONNECTION=mysql  
+  DB_HOST=mysql  
+  DB_PORT=3306  
+  DB_DATABASE=laravel_db  
+  DB_USERNAME=laravel_user  
+  DB_PASSWORD=laravel_pass  
+    
   #### アプリケーションキーの生成  
      php artisan key:generate        
 
