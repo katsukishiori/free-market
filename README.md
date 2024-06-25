@@ -26,7 +26,7 @@ phpMyAdmin:http://localhost:8080/
 ## ER図  
 ## 環境構築  
 ### 1.リポジトリをクローンします。  
-`git clone https://github.com/katsukishiori/free-market`    
+#### `git clone https://github.com/katsukishiori/free-market`    
   
 ### 2.Dockerコンテナを起動します。  
 `docker-compose up -d --build`    
