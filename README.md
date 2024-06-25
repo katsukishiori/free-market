@@ -32,7 +32,7 @@ phpMyAdmin:http://localhost:8080/
 `docker-compose up -d --build`    
   
 ### 3.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
-  ##### PHPコンテナへのログイン
+  #### PHPコンテナへのログイン
     `docker-compose exec php bash`  
   
   #### Laravelアプリケーションの依存関係をインストール  
@@ -41,17 +41,17 @@ phpMyAdmin:http://localhost:8080/
   #### 環境変数の設定
   env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。
     `cp .env.example .env`  
+  
+  #### アプリケーションキーの生成  
+    `php artisan key:generate`      
 
-  #アプリケーションキーの生成  
-    `php artisan key:generate`    
-
-  #データベーステーブルの作成   
+  #### データベーステーブルの作成   
     `php artisan migrate`    
 
-  #初期データの投入  
+  #### 初期データの投入  
     `php artisan db:seed`    
 
-5.以下の URL にアクセスし、トップページを表示します。  
+### 5.以下の URL にアクセスし、トップページを表示します。  
 http://localhost/  
   ⚫︎管理者  
     Email: admin@example.com  
