@@ -17,45 +17,56 @@ phpMyAdmin:http://localhost:8080/
 ・ユーザーの削除機能(管理者のみ)  
 ・ショップとユーザーのやり取り確認(管理者のみ)  
 ・配送先変更機能  
-## 使用技術(実行環境)
+
+## 使用技術(実行環境)  
+・PH: 7.4.9  
+・MySQL: 10.3.39-MariaDB  
+・Laravel: 8.75  
+
 ## ER図  
 ## 環境構築  
 1.リポジトリをクローンします。  
 `git clone https://github.com/katsukishiori/free-market`  
 2.環境変数用のファイルを用意します。  
 
-Dockerビルド  
-1.ディレクトリの作成  
-2.docker-compose.ymlの作成  
-3.Nginxの設定  
-4.PHPの設定  
-5.MySQLの設定  
-6.phpMyAdminの設定  
-7.docker-compose up -d --build  
+3.Dockerコンテナを起動します。  
+`docker-compose up -d --build`  
+
+4.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
+# PHPコンテナへのログイン
+`docker-compose exec php bash`  
+
+# Laravelアプリケーションの依存関係をインストール  
+`composer update`  
+
+# アプリケーションキーの生成  
+`php artisan key:generate`  
+
+# データベーステーブルの作成   
+`php artisan migrate`  
+
+# 初期データの投入  
+php artisan db:seed  
+
+5.以下の URL にアクセスし、トップページを表示します。  
+http://localhost/  
+  ⚫︎管理者  
+    Email: admin@example.com  
+    Password: admin123  
+  ⚫︎店舗代表者    
+    Email: manager@example.com  
+    Password: manager123  
+  ⚫︎一般ユーザーA  
+    Email: usera@example.com  
+    Password: usera123  
+  ⚫︎一般ユーザーB    
+    Email: userb@example.com    
+    Password: userb123 
+    
   
-※MySQLは、OSによって起動しない場合があるのでそれぞれのPCに合わせてdocker-compose.ymlファイルを編集してください  
+
   
-Laravel環境構築
-1.docker-compose exec php bash  
-2.composer -vでcomposerがインストールできているか確認  
-3.composer create-project "laravel/laravel=8.*" . --prefer-dist  
-4.php artisan migrate  
-5.php artisan db:seed  
+
 ## その他
 
-<<<<<<< HEAD
-=======
-# free-market
-=======
-# フリーマーケットアプリ  
 
->>>>>>> 1fa0c6c (Update README.md)
-# free-market
-# free-market
-# 20240427_free-market
-# 20240427_free-market
-# free-market
->>>>>>> c2de332 (first commit)
-# free-market
-# free-market
-# free-market
