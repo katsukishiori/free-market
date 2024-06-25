@@ -1,4 +1,6 @@
-# coachtech フリマ  
+# coachtech フリマ 
+<img width="1126" alt="スクリーンショット 2024-06-25 17 25 30" src="https://github.com/katsukishiori/free-market/assets/145991391/af6fd6d5-4aa7-4050-9ccf-bb239ad80b88">  
+ 
 ## 作成した目的  
 以前より使いやすいアプリにするため
 ## アプリケーションURL  
@@ -39,8 +41,8 @@ phpMyAdmin:http://localhost:8080/
      composer update    
 
   #### ◇環境変数の設定
-  env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。  
-       cp .env.example .env   
+  env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。    
+    cp .env.example .env   
     
   DB_CONNECTION=mysql  
   DB_HOST=mysql  
@@ -60,15 +62,19 @@ phpMyAdmin:http://localhost:8080/
 
 ### 5.以下の URL にアクセスし、トップページを表示します。  
 http://localhost/  
+  
   ⚫︎管理者  
     Email: admin@example.com  
     Password: admin123  
+    
   ⚫︎店舗代表者    
     Email: manager@example.com  
     Password: manager123  
+      
   ⚫︎一般ユーザーA  
     Email: usera@example.com  
     Password: usera123  
+      
   ⚫︎一般ユーザーB    
     Email: userb@example.com    
     Password: userb123 
