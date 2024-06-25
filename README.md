@@ -25,22 +25,21 @@ phpMyAdmin:http://localhost:8080/
 
 ## ER図  
 ## 環境構築  
-1.リポジトリをクローンします。  
+### 1.リポジトリをクローンします。  
 `git clone https://github.com/katsukishiori/free-market`  
-2.環境変数用のファイルを用意します。  
-
-3.Dockerコンテナを起動します。  
+  
+### 2.Dockerコンテナを起動します。  
 `docker-compose up -d --build`  
-
-4.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
-  #PHPコンテナへのログイン
+  
+### 3.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
+  ##### PHPコンテナへのログイン
     `docker-compose exec php bash`  
-
-  #Laravelアプリケーションの依存関係をインストール  
+  
+  #### Laravelアプリケーションの依存関係をインストール  
     `composer update`  
-  4. 環境変数の設定
 
-  #.env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。
+  #### 環境変数の設定
+  env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。
     `cp .env.example .env`
 
   #アプリケーションキーの生成  
