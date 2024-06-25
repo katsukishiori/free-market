@@ -35,12 +35,12 @@ phpMyAdmin:http://localhost:8080/
   #### ◇PHPコンテナへのログイン
     docker-compose exec php bash    
   
-  #### Laravelアプリケーションの依存関係をインストール  
+  #### ◇Laravelアプリケーションの依存関係をインストール  
      composer update    
 
-  #### 環境変数の設定
+  #### ◇環境変数の設定
   env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。  
-      cp .env.example .env  
+      cp .env.example .env   
   
   DB_CONNECTION=mysql  
   DB_HOST=mysql  
@@ -49,13 +49,13 @@ phpMyAdmin:http://localhost:8080/
   DB_USERNAME=laravel_user  
   DB_PASSWORD=laravel_pass  
     
-  #### アプリケーションキーの生成  
+  #### ◇アプリケーションキーの生成  
      php artisan key:generate        
 
-  #### データベーステーブルの作成   
+  #### ◇データベーステーブルの作成   
      php artisan migrate      
 
-  #### 初期データの投入  
+  #### ◇初期データの投入  
      php artisan db:seed     
 
 ### 5.以下の URL にアクセスし、トップページを表示します。  
