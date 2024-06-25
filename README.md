@@ -33,7 +33,7 @@ phpMyAdmin:http://localhost:8080/
 `docker-compose up -d --build`  
 
 4.PHP コンテナへログインし、Laravel アプリケーションの準備をします。  
-#  PHPコンテナへのログイン
+#PHPコンテナへのログイン
 `docker-compose exec php bash`  
 
 # Laravelアプリケーションの依存関係をインストール  
