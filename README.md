@@ -22,11 +22,10 @@ phpMyAdmin:http://localhost:8080/
 ・ショップスタッフ招待.削除機能(店舗代表者)  
   
 ## 使用技術(実行環境)  
-・PH: 7.4.9  
+・PHP: 7.4.9  
 ・MySQL: 10.3.39-MariaDB  
 ・Laravel: 8.75  
-
-## ER図  
+  
 ## 環境構築  
 ### 1.リポジトリをクローンします。    
      git clone https://github.com/katsukishiori/free-market.git        
