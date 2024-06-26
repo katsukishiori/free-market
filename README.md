@@ -62,9 +62,15 @@ phpMyAdmin:http://localhost:8080/
      php artisan migrate      
 
   #### ◇初期データの投入  
-     php artisan db:seed     
+     php artisan db:seed  
 
-### 4.以下の URL にアクセスし、トップページを表示します。  
+### 4.シンボリックリンクの作成
+storageフォルダに保存した画像をpublicフォルダを通じてアクセスするために、publicフォルダにstorageフォルダのショートカットを作ります。
+    
+    php artisan storage:link  
+   
+
+### 5.以下の URL にアクセスし、トップページを表示します。  
 http://localhost/  
   
   ⚫︎管理者  
