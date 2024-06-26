@@ -91,7 +91,7 @@ http://localhost/
     
 ## その他 
 メール送信はGmailを使用しています。
-`your_email@gmail.com`と`your_pass`の所は自分のメールアドレスやパスワードに書き換えてください。  
+`your_email@gmail.com`と`your_pass`の所は自分のメールアドレスやパスワードに書き換えてメール通知を確認してください。  
     
     MAIL_MAILER=smtp  
     MAIL_HOST=smtp.gmail.com    
