@@ -1,4 +1,4 @@
-# coachtech フリマ 
+# coachtech フリマアプリ   
 <img width="1126" alt="スクリーンショット 2024-06-25 17 25 30" src="https://github.com/katsukishiori/free-market/assets/145991391/af6fd6d5-4aa7-4050-9ccf-bb239ad80b88">  
  
 ## 作成した目的  
