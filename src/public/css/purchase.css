@@ -40,7 +40,7 @@
 .right-section {
   display: flex;
   align-items: center;
-  width: 25%;
+  width: 50%;
   padding-right: 20px;
 }
 
@@ -220,7 +220,8 @@ table.purchase {
 
 @media (max-width: 430px) {
   .header__logo {
-    font-size: 13px;
+    font-size: 10px;
+    margin: 0px;
   }
 
   li.header-nav__item {
@@ -244,7 +245,7 @@ table.purchase {
   }
 
   .form__input--text input {
-    width: 90%;
+    width: 100%;
     padding: 0px;
     margin: 0px;
     font-size: 10px;
@@ -252,6 +253,7 @@ table.purchase {
 
   .header-nav__button {
     font-size: 10px;
+    width: 70px;
   }
 
   ul.header-nav {
@@ -311,6 +313,14 @@ table.purchase {
   .form__input--text input {
     width: 90%;
   }
+
+  .header-nav__item:nth-child(3) {
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
 }
 
 

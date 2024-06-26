@@ -112,7 +112,11 @@ form {
 
   .header-nav {
     width: 40%;
-    font-size: 12px;
+    font-size: 10px;
+  }
+
+  .header-nav__item {
+    font-size: 10px;
   }
 
   .header-nav__button {

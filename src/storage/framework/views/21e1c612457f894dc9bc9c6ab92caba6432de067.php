@@ -72,7 +72,7 @@
                     <tr>
                         <th rowspan="3">
                             <div class="image-container">
-                                <img class="item-image" src="/img/<?php echo e($item->img_url); ?>" alt="<?php echo e($item->name); ?>の画像">
+                                <img src="<?php echo e(asset('storage/images/' . $item->img_url)); ?>" alt="<?php echo e($item->name); ?>の画像">
                             </div>
                         </th>
                         <td>

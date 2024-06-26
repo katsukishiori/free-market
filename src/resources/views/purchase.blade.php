@@ -71,7 +71,7 @@
                     <tr>
                         <th rowspan="3">
                             <div class="image-container">
-                                <img class="item-image" src="/img/{{ $item->img_url }}" alt="{{ $item->name }}の画像">
+                                <img src="{{ asset('storage/images/' . $item->img_url) }}" alt="{{ $item->name }}の画像">
                             </div>
                         </th>
                         <td>
