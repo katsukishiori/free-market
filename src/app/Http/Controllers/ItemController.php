@@ -58,7 +58,7 @@ class ItemController extends Controller
         if ($request->hasFile('img_url')) {
             // 画像の保存
             $image = $request->file('img_url');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $filename = time() . '.jpg';
             $image->storeAs('public/images', $filename);
             // データベースに保存する画像パスを設定
             $imagePath = $filename;
