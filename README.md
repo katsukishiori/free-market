@@ -44,7 +44,8 @@ phpMyAdmin:http://localhost:8080/
   env.exampleファイルをコピーして.envファイルを作成し、必要な環境変数を設定します。  
     
     cp .env.example .env       
-    
+
+        
       DB_CONNECTION=mysql  
       DB_HOST=mysql  
       DB_PORT=3306  
@@ -84,6 +85,7 @@ http://localhost/
 ## その他 
 メール送信はGmailを使用しています。
 `your_email@gmail.com`と`your_pass`の所は自分のメールアドレスやパスワードに書き換えてください。  
+    
     MAIL_MAILER=smtp  
     MAIL_HOST=smtp.gmail.com    
     MAIL_PORT=587  
