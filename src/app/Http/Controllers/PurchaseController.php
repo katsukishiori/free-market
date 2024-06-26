@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\AddressRequest;
 use App\Models\Item;
@@ -12,6 +11,7 @@ use App\Models\Address;
 
 class PurchaseController extends Controller
 {
+    // 商品購入ページ
     public function index($id)
     {
         $item = Item::findOrFail($id);
@@ -19,11 +19,11 @@ class PurchaseController extends Controller
         return view('purchase', ['item_id' => $id, 'item' => $item]);
     }
 
+    // 商品購入
     public function purchase($item_id)
     {
         $item = Item::findOrFail($item_id);
 
-        // アイテムの購入処理
         SoldItem::create([
             'item_id' => $item->id,
             'user_id' => Auth::id(),
@@ -32,6 +32,7 @@ class PurchaseController extends Controller
         return redirect()->route('mypage')->with('success', '商品を購入しました。');
     }
 
+    //配送先変更ページ
     public function address($id)
     {
         $item = Item::findOrFail($id);
@@ -39,18 +40,15 @@ class PurchaseController extends Controller
         return view('address_change', ['item' => $item, 'item_id' => $item->id]);
     }
 
+    // 配送先変更
     public function updateAddress(AddressRequest $request, $item_id)
     {
-        // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
-        // 対応するItemモデルを取得
         $item = Item::findOrFail($item_id);
 
-        // バリデーション済みのデータを取得
         $formData = $request->validated();
 
-        // 住所データを保存
         Address::updateOrCreate(
             ['item_id' => $item->id, 'user_id' => $user_id],
             [

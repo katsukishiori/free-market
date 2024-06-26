@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\CategoryItem;
 use App\Models\Condition;
 use App\Http\Requests\ItemsRequest;
 use App\Models\RoleUser;
-use Illuminate\Support\Facades\Log;
 
 
 class ItemController extends Controller
 {
+    // 商品一覧表示
     public function index()
     {
         $items = Item::all();
@@ -24,28 +22,26 @@ class ItemController extends Controller
         return view('product_list', compact('items'));
     }
 
+    // 商品詳細表示
     public function detail($id)
     {
-        // 商品情報を取得
         $item = Item::findOrFail($id);
 
         // 商品に関連付けられたカテゴリアイテムを取得
         $category_item = CategoryItem::where('item_id', $item->id)->first();
 
-        // カテゴリアイテムからカテゴリを取得
         $category = $category_item->category;
 
-        // 商品のconditionを取得
         $condition = $item->condition->name;
 
         $roleUser = RoleUser::where('user_id', $item->user_id)->first();
 
         $item->description = str_replace("\n", '<br>', $item->description);
 
-        // 商品情報とカテゴリをビューに渡す
         return view('item', compact('item', 'category', 'condition', 'roleUser'));
     }
 
+    // 出品ページ表示
     public function sellView()
     {
         $categories = Category::all();
@@ -53,9 +49,9 @@ class ItemController extends Controller
         return view('sell', ['categories' => $categories, 'conditions' => $conditions]);
     }
 
+    // 出品
     public function sellCreate(ItemsRequest $request)
     {
-        // バリデーション済みのデータを取得
         $validatedData = $request->validated();
 
         // 画像が存在するか確認
@@ -65,9 +61,9 @@ class ItemController extends Controller
             $filename = time() . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/images', $filename);
             // データベースに保存する画像パスを設定
-            $imagePath = $filename; // 例：123456789.jpg
+            $imagePath = $filename;
         } else {
-            // 画像がない場合はバリデーションエラーを返す
+
             return redirect()->back()->withInput()->withErrors(['img_url' => '画像を選択してください']);
         }
 
@@ -86,7 +82,6 @@ class ItemController extends Controller
             }
         }
 
-
         // 商品情報の保存
         $item = new Item();
         $item->id = $newItemId;
@@ -104,9 +99,8 @@ class ItemController extends Controller
         $categoryItem->category_id = $validatedData['category'];
         $categoryItem->save();
 
-        // 成功メッセージをセッションに保存
         session()->flash('success', '商品が出品されました。');
 
-        return redirect('/sell'); // 必要に応じて適切なリダイレクト先を設定
+        return redirect('/sell');
     }
 }

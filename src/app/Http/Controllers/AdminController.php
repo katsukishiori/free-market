@@ -15,29 +15,28 @@ class AdminController extends Controller
         $this->middleware('checkRole:1');
     }
 
+    // 管理者画面
     public function index()
     {
-        // ユーザー一覧を取得
         $users = User::all();
 
-        // ビューにユーザー一覧を渡す
         return view('admin', compact('users'));
     }
 
+    // ユーザー削除
     public function delete($id)
     {
         $user = User::findOrFail($id);
 
-        // ユーザーを削除
         $user->delete();
 
-        // リダイレクトして成功メッセージを表示
         return redirect()->route('admin')->with('success', 'ユーザーを削除しました。');
     }
 
+    // ショップとユーザーのやり取り確認
     public function messages(Request $request)
     {
-        $query = Comment::query()->with('user'); // ユーザーリレーションを事前に読み込む
+        $query = Comment::query()->with('user');
 
         if ($request->has('user') && $request->user != '') {
             $query->whereHas('user', function ($q) use ($request) {
@@ -51,7 +50,7 @@ class AdminController extends Controller
             });
         }
 
-        // フィルタリングされたコメントを商品ごとにグループ化
+        // コメントを商品ごとにグループ化
         $comments = $query->with(['user', 'item'])->get();
 
         return view('messages', compact('comments'));
@@ -63,10 +62,9 @@ class AdminController extends Controller
         return view('form_mail', ['user' => $user]);
     }
 
-    // メール送信の処理
+    // メール送信
     public function send(Request $request)
     {
-        // バリデーション
         $request->validate([
             'email' => 'required|email',
             'subject' => 'required|string|max:255',

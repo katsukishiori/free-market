@@ -68,10 +68,6 @@ class User extends Authenticatable
         return $this->hasMany(SoldItem::class);
     }
 
-    // public function roles()
-    // {
-    //     return $this->belongsToMany(Role::class)->withPivot('manager_id')->withTimestamps();
-    // }
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
@@ -86,6 +82,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Manager::class);
     }
+
 
     // Accessor
     public function getIntroductionUrlAttribute()

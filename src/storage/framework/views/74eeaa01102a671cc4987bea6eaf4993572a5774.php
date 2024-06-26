@@ -10,12 +10,6 @@
             ショップスタッフ招待メール送信
         </h1>
 
-        <?php if(Auth::id() === config('const.GUEST_USER_ID')): ?>
-        <p class="text-danger">
-            ※ゲストユーザーは、家族招待メールを送信できません。
-        </p>
-        <?php endif; ?>
-
         <div class="card my-4 shadow-sm">
             <div class="card-body">
 
@@ -44,10 +38,6 @@
         </div>
         <a class="bottom__btn " href="<?php echo e(route('manager.detail')); ?>">ショップスタッフ一覧へ</a>
     </div>
-
-
-
-
 
 </body>
 

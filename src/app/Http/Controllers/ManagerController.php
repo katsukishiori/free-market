@@ -21,12 +21,14 @@ class ManagerController extends Controller
         $this->middleware('checkRole:2');
     }
 
+    // 店舗管理者ページ表示
     public function index()
     {
         $users = User::all();
         return view('manager', compact('users'));
     }
 
+    // 招待メール送信
     public function sendInviteManagerEmail(Request $request)
     {
         $request->validate([
@@ -41,7 +43,6 @@ class ManagerController extends Controller
         DB::beginTransaction();
 
         try {
-            // 招待をデータベースに保存
             Manager::create([
                 'user_id' => $user->id,
                 'email' => $email,
@@ -70,13 +71,14 @@ class ManagerController extends Controller
         }
     }
 
+    // 招待されたユーザーの登録画面表示
     public function showInvitedUserRegistrationForm($token)
     {
         $invitation = Manager::where('token', $token)->firstOrFail();
         return view('auth.register_invited', ['token' => $token]);
     }
 
-
+    // 招待されたユーザーの登録機能
     public function registerInvitedUser(Request $request, $token)
     {
         $rules = [
@@ -87,19 +89,16 @@ class ManagerController extends Controller
 
         $request->validate($rules);
 
-        // ユーザーを作成
         $user = User::create([
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
 
-        // マネージャー情報を作成し、そのIDを取得
         $manager = Manager::create([
             'shop_name' => $request->input('shop_name'),
             'user_id' => $user->id,
         ]);
 
-        // ユーザーに役割を割り当てる
         $role = Role::find(2);
         $user->roles()->attach($role->id, ['manager_id' => $manager->id]);
 
@@ -108,20 +107,20 @@ class ManagerController extends Controller
         return view('auth.register_invited', ['token' => $token]);
     }
 
+    // ショップスタッフ一覧ページ
     public function detail()
     {
         $managers = Manager::all();
         return view('manager_list', compact('managers'));
     }
 
+    // ショップスタッフ削除機能
     public function delete($id)
     {
         $manager = Manager::findOrFail($id);
 
-        // ユーザーを削除
         $manager->delete();
 
-        // リダイレクトして成功メッセージを表示
         return redirect()->route('manager')->with('success', 'ユーザーを削除しました。');
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Like;
 
 class LikeController extends Controller
 {
+    // いいね機能
     public function create($item_id)
     {
         $user_id = auth()->id();
@@ -15,11 +15,9 @@ class LikeController extends Controller
         $existingLike = Like::where('user_id', $user_id)->where('item_id', $item_id)->first();
 
         if ($existingLike) {
-            // いいねが既に存在する場合、削除する
             $existingLike->delete();
             $message = 'いいねを解除しました！';
         } else {
-            // いいねが存在しない場合、新しいいいねを追加する
             Like::create([
                 'user_id' => $user_id,
                 'item_id' => $item_id,
@@ -30,15 +28,15 @@ class LikeController extends Controller
         return redirect()->back()->with('success', $message);
     }
 
+    // いいね削除機能
     public function destroy($item_id)
     {
         $user_id = auth()->id();
 
-        // いいねを検索して削除する
         $like = Like::where('user_id', $user_id)->where('item_id', $item_id)->first();
 
         if (!$like) {
-            // いいねが見つからない場合、リダイレクトしてエラーメッセージを表示
+
             return redirect()->back()->with('error', 'いいねが見つかりません！');
         }
 

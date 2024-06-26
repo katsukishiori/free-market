@@ -29,7 +29,6 @@
             <div class="image-container">
                 @foreach ($items as $item)
                 <?php
-    
                 $isLiked = $item->likes()->where('user_id', auth()->id())->exists();
                 ?>
                 @if($isLiked)

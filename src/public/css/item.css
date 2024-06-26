@@ -21,7 +21,7 @@
 .image-container img {
   padding-top: 20px;
   padding-left: 10px;
-  width: 100%;
+  width: 300px;
   height: 300px;
 }
 
@@ -106,7 +106,7 @@ table td {
   .image-container img {
     padding-top: 20px;
     padding-left: 0px;
-    width: 150px;
+    width: 80%;
     height: 150px;
   }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
@@ -13,32 +12,29 @@ use App\Models\SoldItem;
 
 class UserController extends Controller
 {
+    // マイページ表示
     public function mypage()
     {
-        // ログインしているユーザーの sold items を取得し、関連する item をロード
         $soldItems = SoldItem::where('user_id', Auth::id())->with('item')->get();
 
         $user = auth()->user();
         $profile = $user->profile;
         $imgUrl = $profile ? $profile->img_url : 'default.jpg';
 
-        // ログインしているユーザーの出品した商品を取得
         $userId = Auth::id();
         $items = Item::where('user_id', $userId)->get();
 
         return view('mypage', compact('imgUrl', 'soldItems', 'items'));
     }
 
+    // プロフィール更新処理
     public function updateProfile(ProfileRequest $request)
     {
-        // 現在のユーザーを取得
         $user = Auth::user();
 
-        // ユーザーの名前を更新
         $user->name = $request->input('name');
         $user->save();
 
-        // ユーザーに関連するプロフィールを取得または新規作成
         $profile = $user->profile ?: new Profile(['user_id' => $user->id]);
 
         // プロフィールの各フィールドをリクエストからの値で更新
@@ -68,6 +64,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'プロフィールが更新されました！');
     }
 
+    // プロフィール編集画面
     public function profile()
     {
         $user = auth()->user();
