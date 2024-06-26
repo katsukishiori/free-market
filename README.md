@@ -61,7 +61,7 @@ phpMyAdmin:http://localhost:8080/
   #### ◇初期データの投入  
      php artisan db:seed     
 
-### 5.以下の URL にアクセスし、トップページを表示します。  
+### 4.以下の URL にアクセスし、トップページを表示します。  
 http://localhost/  
   
   ⚫︎管理者  
