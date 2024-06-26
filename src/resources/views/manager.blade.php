@@ -12,12 +12,6 @@
             ショップスタッフ招待メール送信
         </h1>
 
-        @if (Auth::id() === config('const.GUEST_USER_ID'))
-        <p class="text-danger">
-            ※ゲストユーザーは、家族招待メールを送信できません。
-        </p>
-        @endif
-
         <div class="card my-4 shadow-sm">
             <div class="card-body">
 
@@ -45,10 +39,6 @@
         </div>
         <a class="bottom__btn " href="{{ route('manager.detail') }}">ショップスタッフ一覧へ</a>
     </div>
-
-
-
-
 
 </body>
 

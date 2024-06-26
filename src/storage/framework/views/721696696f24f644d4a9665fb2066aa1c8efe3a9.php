@@ -27,7 +27,7 @@
             <div class="image-container">
                 <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php
-                // アイテムがいいねされているかをチェック
+    
                 $isLiked = $item->likes()->where('user_id', auth()->id())->exists();
                 ?>
                 <?php if($isLiked): ?>

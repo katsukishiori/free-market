@@ -86,8 +86,6 @@
                     </button>
                 </form>
 
-
-
                 <form action="/item/comment/{{ $item->id }}" method="GET">
                     @csrf
                     <button type="submit" class="comment-btn">

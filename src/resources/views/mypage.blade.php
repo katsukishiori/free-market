@@ -49,7 +49,7 @@
         <div class="content_class" id="content2">
             <div class="image-container">
                 @foreach($soldItems as $soldItem)
-                @if ($soldItem->item) <!-- 関連する item が存在する場合のみ表示 -->
+                @if ($soldItem->item)
                 <div>
                     <a href="{{ route('item.detail', ['item_id' => $soldItem->item->id]) }}">
                         <img src="{{ asset('storage/images/' . $soldItem->item->img_url) }}" alt="{{ $soldItem->item->name }}の画像">
@@ -81,8 +81,6 @@
             });
         });
     </script>
-
-
 
     <div class="content_class">
         <div class="image-container">
@@ -129,6 +127,6 @@
             });
         });
     </script>
-</body>
 
-@endsection
+    @endsection
+</body>

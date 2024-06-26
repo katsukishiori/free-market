@@ -55,6 +55,11 @@ class UserController extends Controller
             $image = $request->file('image');
             $path = $image->store('public/images');
             $profile->img_url = basename($path);
+        } else {
+            // 画像が選択されていない場合にデフォルト画像を設定
+            if (!$profile->img_url) {
+                $profile->img_url = 'default.jpg';
+            }
         }
 
         // プロフィールを保存

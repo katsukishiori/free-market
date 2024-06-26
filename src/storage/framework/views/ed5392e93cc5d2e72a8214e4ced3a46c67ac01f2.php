@@ -47,7 +47,7 @@
         <div class="content_class" id="content2">
             <div class="image-container">
                 <?php $__currentLoopData = $soldItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $soldItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($soldItem->item): ?> <!-- 関連する item が存在する場合のみ表示 -->
+                <?php if($soldItem->item): ?>
                 <div>
                     <a href="<?php echo e(route('item.detail', ['item_id' => $soldItem->item->id])); ?>">
                         <img src="<?php echo e(asset('storage/images/' . $soldItem->item->img_url)); ?>" alt="<?php echo e($soldItem->item->name); ?>の画像">
@@ -79,8 +79,6 @@
             });
         });
     </script>
-
-
 
     <div class="content_class">
         <div class="image-container">
@@ -127,7 +125,7 @@
             });
         });
     </script>
-</body>
 
-<?php $__env->stopSection(); ?>
+    <?php $__env->stopSection(); ?>
+</body>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/resources/views/mypage.blade.php ENDPATH**/ ?>

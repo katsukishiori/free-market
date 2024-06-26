@@ -29,7 +29,7 @@
             <div class="image-container">
                 @foreach ($items as $item)
                 <?php
-                // アイテムがいいねされているかをチェック
+    
                 $isLiked = $item->likes()->where('user_id', auth()->id())->exists();
                 ?>
                 @if($isLiked)

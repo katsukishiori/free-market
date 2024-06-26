@@ -1,6 +1,6 @@
 .flex {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-top: 100px;
 }
 
@@ -15,7 +15,7 @@
 
 .image-container img {
   padding-top: 20px;
-  width: 60%;
+  width: 100%;
   height: 300px;
 }
 
@@ -35,7 +35,7 @@ button.like-btn {
 }
 
 button.comment-btn {
-  background-color: transparent; /* 背景色を透明にする */
+  background-color: transparent;
   border: none;
   padding: 0;
   font-size: 25px;
@@ -47,7 +47,7 @@ button.comment-btn {
 
 .button-container {
   display: flex;
-  gap: 50px; /* ボタン間の間隔を設定（オプション） */
+  gap: 50px;
   align-items: center;
   margin-bottom: 80px;
 }
@@ -67,7 +67,7 @@ table td {
 .evaluation-item {
   display: flex;
   margin-top: 30px;
-  flex-direction: column; /* 要素を縦方向に並べる */
+  flex-direction: column;
   align-items: flex-start;
 }
 
@@ -85,7 +85,7 @@ table td {
 }
 
 .evaluation-name h4 {
-  margin: 0;
+  margin-left: 10px;
 }
 
 .evaluation-comment {
@@ -128,7 +128,7 @@ table td {
   padding: 5px;
   margin-top: 30px;
   margin-bottom: 50px;
-  width: 100%;
+  width: 80%;
   height: 30px;
   border: none;
   border-radius: 3px;
@@ -139,17 +139,46 @@ table td {
 
 @media (max-width: 768px) {
   .comment textarea {
-    margin: 50px 0px;
+    margin-top: 50px;
   }
 }
 
 @media (max-width: 430px) {
   .flex {
     margin-top: 30px;
+    flex-direction: column;
+  }
+
+  .box__left {
+    width: 100%;
+    padding-left: 50px;
+  }
+
+  .box__right {
+    width: 100%;
+    padding-left: 50px;
   }
 
   .image-container img {
+    width: 70%;
     height: 200px;
+  }
+
+  .evaluation-item {
+    margin-top: 0px;
+  }
+
+  .comment p {
+    margin: 0px;
+}
+
+  .comment textarea {
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  .button-container {
+    margin-bottom: 30px;
   }
 }
 

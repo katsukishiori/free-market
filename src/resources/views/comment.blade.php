@@ -11,12 +11,12 @@
 <body>
 
     <div class="flex">
-        <div class="box">
+        <div class="box__left">
             <div class="image-container">
                 <img src="/img/{{ $item->img_url }}" alt="{{ $item->name }}の画像">
             </div>
         </div>
-        <div class="box">
+        <div class="box__right">
             <div class="item-name">
                 <h1>{{ $item->name }}</h1>
                 <p>COACHTECH</p>

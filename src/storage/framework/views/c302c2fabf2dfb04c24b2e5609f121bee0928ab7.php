@@ -84,8 +84,6 @@
                     </button>
                 </form>
 
-
-
                 <form action="/item/comment/<?php echo e($item->id); ?>" method="GET">
                     <?php echo csrf_field(); ?>
                     <button type="submit" class="comment-btn">

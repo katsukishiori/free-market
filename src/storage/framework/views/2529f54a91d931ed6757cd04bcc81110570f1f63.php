@@ -9,12 +9,12 @@
 <body>
 
     <div class="flex">
-        <div class="box">
+        <div class="box__left">
             <div class="image-container">
                 <img src="/img/<?php echo e($item->img_url); ?>" alt="<?php echo e($item->name); ?>の画像">
             </div>
         </div>
-        <div class="box">
+        <div class="box__right">
             <div class="item-name">
                 <h1><?php echo e($item->name); ?></h1>
                 <p>COACHTECH</p>
