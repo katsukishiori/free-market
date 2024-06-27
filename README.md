@@ -55,7 +55,7 @@ phpMyAdmin:http://localhost:8080/
       DB_PASSWORD=laravel_pass  
       
     
-  #### ◇アプリケーションキーの生成  
+  #### ❶アプリケーションキーの生成  
      php artisan key:generate        
 
   #### ◇データベーステーブルの作成   
