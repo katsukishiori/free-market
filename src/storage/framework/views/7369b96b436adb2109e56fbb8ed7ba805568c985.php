@@ -32,6 +32,7 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
         </div>
+
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">パスワード</span>
@@ -55,10 +56,13 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
         </div>
+
         <div class="form__button--login">
             <button class="form__button-submit" type="submit">ログイン</button>
         </div>
+
     </form>
+
     <div class="register__link">
         <a class="register__button-submit" href="/register">会員登録はこちら</a>
     </div>

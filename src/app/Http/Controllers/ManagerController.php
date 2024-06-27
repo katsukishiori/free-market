@@ -29,6 +29,7 @@ class ManagerController extends Controller
         return view('manager', compact('users'));
     }
 
+    // ショップスタッフ招待メール送信
     public function sendInviteManagerEmail(Request $request)
     {
         $request->validate([
@@ -43,7 +44,6 @@ class ManagerController extends Controller
         DB::beginTransaction();
 
         try {
-            // Invitesテーブルにデータを保存
             Invite::create([
                 'user_id' => $user->id,
                 'email' => $email,
@@ -63,14 +63,15 @@ class ManagerController extends Controller
 
             // トランザクションコミット
             DB::commit();
+
+            // 成功時にリダイレクト
+            return redirect()->route('manager')->with('status', '招待メールを送信しました!');
         } catch (\Exception $e) {
             // トランザクションロールバック
             DB::rollBack();
-            return redirect()->back()->with('status', '招待メールを送信しました!');
+            return redirect()->route('manager')->with('status', '招待メールの送信に失敗しました。');
         }
     }
-
-
 
     // 招待されたユーザーの登録画面表示
     public function showInvitedUserRegistrationForm($token)

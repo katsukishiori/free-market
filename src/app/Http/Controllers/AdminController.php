@@ -33,25 +33,23 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('success', 'ユーザーを削除しました。');
     }
 
-    // ショップとユーザーのやり取り確認
     public function messages(Request $request)
     {
-        $query = Comment::query()->with('user');
+        $query = Comment::query();
 
-        if ($request->has('user') && $request->user != '') {
-            $query->whereHas('user', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->user . '%');
+        if ($request->filled('user')) {
+            $query->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->input('user') . '%');
             });
         }
 
-        if ($request->has('item') && $request->item != '') {
-            $query->whereHas('item', function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->item . '%');
+        if ($request->filled('item')) {
+            $query->whereHas('item', function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->input('item') . '%');
             });
         }
 
-        // コメントを商品ごとにグループ化
-        $comments = $query->with(['user', 'item'])->get();
+        $comments = $query->with(['user', 'item'])->get()->groupBy('item_id');
 
         return view('messages', compact('comments'));
     }
