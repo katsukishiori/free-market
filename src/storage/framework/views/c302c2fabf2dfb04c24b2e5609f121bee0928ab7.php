@@ -18,7 +18,7 @@
                 <?php if(isset($roleUser) && $roleUser->manager): ?>
                 <p><?php echo e($roleUser->manager->shop_name); ?></p>
                 <?php else: ?>
-                <p></p>
+                <p>表示するデータがありません</p>
                 <?php endif; ?>
             </div>
             <div class="item-price">

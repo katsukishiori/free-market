@@ -18,7 +18,6 @@ class CreateInvitesTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('email');
             $table->string('token')->nullable();
-            $table->boolean('accepted')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

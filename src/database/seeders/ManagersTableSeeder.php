@@ -15,9 +15,8 @@ class ManagersTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'user_id' => 1,
+            'user_id' => 2,
             'shop_name' => 'coachtech',
-            'token' => 'coachtech_token', // デフォルト値を設定
         ];
         DB::table('managers')->insert($param);
     }

@@ -7,7 +7,6 @@
 <?php $__env->startSection('content'); ?>
 
 <body>
-
     <div class="flex">
         <div class="box__left">
             <div class="image-container">

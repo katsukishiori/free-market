@@ -20,7 +20,7 @@
                 @if(isset($roleUser) && $roleUser->manager)
                 <p>{{ $roleUser->manager->shop_name }}</p>
                 @else
-                <p></p>
+                <p>表示するデータがありません</p>
                 @endif
             </div>
             <div class="item-price">
