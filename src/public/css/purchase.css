@@ -282,6 +282,10 @@ table.purchase {
     width: 30%;
   }
 
+  .item-name h1 {
+    font-size: 17px;
+  }
+
   table.item-top, th {
     width: 20px;
   }

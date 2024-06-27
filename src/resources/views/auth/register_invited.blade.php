@@ -17,7 +17,6 @@
         <div class="header__inner"></div>
     </header>
 
-    <!-- 成功メッセージの表示 -->
     @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -49,6 +48,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">メールアドレス</span>
@@ -64,10 +64,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">パスワード</span>
                 </div>
+
                 <div class="form__group-content">
                     <div class="form__input--text">
                         <input type="password" name="password" />
@@ -79,6 +81,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">確認用パスワード</span>
@@ -92,11 +95,10 @@
                             @enderror
                         </div>
                     </div>
-
                 </div>
             </div>
 
-
             <button type="submit" class="form__button-submit">登録</button>
+
         </form>
 </body>

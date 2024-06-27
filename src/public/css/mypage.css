@@ -173,7 +173,7 @@ input[type="radio"] {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  overflow: hidden; /* 枠からはみ出た部分を隠す */
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,15 +221,18 @@ input[type="radio"] {
     font-size: 15px;
   }
 
-.image-container {
+  .image-container {
     width: 150px;
     margin-left: 5px;
+    grid-gap: 20px;
+    text-align: center;
   }
 
-.edit-profile-button {
+  .edit-profile-button {
     width: 100%;
     font-size: 8px;
     padding-right: 7px;
   }
+
 }
 

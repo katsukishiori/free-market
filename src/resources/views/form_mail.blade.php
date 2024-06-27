@@ -47,6 +47,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">件名</span>
@@ -62,6 +63,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">本文</span>
@@ -77,10 +79,13 @@
                     </div>
                 </div>
             </div>
+
             <div class="form__button">
                 <button class="form__button-submit btn btn-primary" type="submit">メールを送信する</button>
             </div>
+
         </form>
+
     </div>
 
 </body>

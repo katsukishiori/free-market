@@ -15,6 +15,7 @@
                 <img src="/img/{{ $item->img_url }}" alt="{{ $item->name }}の画像">
             </div>
         </div>
+
         <div class="box__right">
             <div class="item-name">
                 <h1>{{ $item->name }}</h1>
@@ -23,6 +24,7 @@
             <div class="item-price">
                 <p>¥{{ number_format($item->price) }}(値段)</p>
             </div>
+
             <div class="button-container">
                 <form action="{{ route('like', ['item_id' => $item->id]) }}" method="POST">
                     @csrf
@@ -88,6 +90,7 @@
                     </figure>
                     <h4>{{ $comment->user->name }}</h4>
                 </div>
+
                 <div class="evaluation-comment">
                     {{ $comment->comment }}
 
@@ -117,7 +120,9 @@
                     <div class="form__button--comment">
                         <button class="form__button-submit" type="submit">コメントを送信する</button>
                     </div>
+
                 </form>
+
             </div>
         </div>
 </body>

@@ -86,6 +86,7 @@
                 <h2>商品説明</h2>
                 <p>{!! nl2br(e($item->description)) !!}</p>
             </div>
+
             <div class="item-information">
                 <h2>商品の情報</h2>
                 <table>
