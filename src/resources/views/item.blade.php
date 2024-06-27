@@ -20,63 +20,13 @@
                 @if(isset($roleUser) && $roleUser->manager)
                 <p>{{ $roleUser->manager->shop_name }}</p>
                 @else
-                <p>表示するデータがありません</p>
+                <p></p>
                 @endif
             </div>
             <div class="item-price">
                 <p>¥{{ number_format($item->price) }}(値段)</p>
             </div>
 
-            <!--色変える <form action="{{ route('like', ['item_id' => $item->id]) }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="btn btn-primary like-button" onclick="toggleFavorite(event, '{{ $item->id }}')">
-                    <i id="heartIcon{{ $item->id }}" class="fas fa-star" style="color: {{ $item->isLiked ? 'orange' : '#EEEEEE' }}; font-size: 30px;"></i>
-                </button>
-            </form>
-            <span id="likeCount{{ $item->id }}" class="like-count">{{ $item->likes->count() }}</span>
-
-            <script>
-                async function toggleFavorite(event, itemId) {
-                    event.preventDefault();
-
-                    var heartIcon = document.getElementById('heartIcon' + itemId);
-                    var likeCount = document.getElementById('likeCount' + itemId);
-
-                    if (heartIcon.style.color === 'red') {
-                        heartIcon.style.color = '#EEEEEE';
-                        likeCount.textContent = parseInt(likeCount.textContent) - 1; // カウントを減らす
-                        await sendFavoriteStatusToServer(itemId, false);
-                    } else {
-                        heartIcon.style.color = 'red';
-                        likeCount.textContent = parseInt(likeCount.textContent) + 1; // カウントを増やす
-                        await sendFavoriteStatusToServer(itemId, true);
-                    }
-                }
-
-                async function sendFavoriteStatusToServer(itemId, isFavorite) {
-                    try {
-                        const response = await fetch('/favorites/add', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            },
-                            body: JSON.stringify({
-                                itemId: itemId,
-                                isFavorite: isFavorite,
-                            }),
-                        });
-
-                        if (response.ok) {
-                            console.log('お気に入りの状態がサーバーに送信されました');
-                        } else {
-                            console.error('お気に入りの状態の送信に失敗しました');
-                        }
-                    } catch (error) {
-                        console.error('エラーが発生しました', error);
-                    }
-                }
-            </script> -->
             <div class="button-container">
                 <form action="{{ route('like', ['item_id' => $item->id]) }}" method="POST">
                     @csrf

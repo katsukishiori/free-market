@@ -48,16 +48,12 @@
         </div>
         <div class="content_class" id="content2">
             <div class="image-container">
-                @foreach ($items as $item)
-                <?php
-                // アイテムがいいねされているかをチェック
-                $isLiked = $item->likes()->where('user_id', auth()->id())->exists();
-                ?>
-                @if($isLiked)
-                <a href="{{ route('item.detail', ['item_id' => $item->id]) }}">
-                    <img src="{{ asset('storage/images/' . $item->img_url) }}" alt="{{ $item->name }}の画像">
-                </a>
-                @endif
+                @foreach($soldItems as $soldItem)
+                <div>
+                    <a href="{{ route('item.detail', ['item_id' => $soldItem->item->id]) }}">
+                        <img src="{{ asset('storage/images/' . $soldItem->item->img_url) }}" alt="{{ $soldItem->item->name }}の画像">
+                    </a>
+                </div>
                 @endforeach
             </div>
         </div>

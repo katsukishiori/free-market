@@ -17,6 +17,12 @@
         <div class="header__inner"></div>
     </header>
 
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
+
     <div class="address__content">
         <div class="address-form__heading">
             <h2>住所の変更</h2>

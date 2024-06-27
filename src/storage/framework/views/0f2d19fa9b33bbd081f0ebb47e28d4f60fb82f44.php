@@ -17,6 +17,13 @@
         <div class="header__inner"></div>
     </header>
 
+    <?php if(session('message')): ?>
+    <div class="alert alert-success">
+        <?php echo e(session('message')); ?>
+
+    </div>
+    <?php endif; ?>
+
     <div class="address__content">
         <div class="address-form__heading">
             <h2>住所の変更</h2>

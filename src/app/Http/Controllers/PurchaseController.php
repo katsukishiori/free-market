@@ -29,7 +29,7 @@ class PurchaseController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect()->route('mypage')->with('success', '商品を購入しました。');
+        return redirect()->route('purchase', ['item_id' => $item->id])->with('success', '商品を購入しました。');
     }
 
     //配送先変更ページ
@@ -54,9 +54,10 @@ class PurchaseController extends Controller
             [
                 'postcode' => $formData['postcode'],
                 'address' => $formData['address'],
+                'building' => $formData['building'],
             ]
         );
 
-        return redirect('/')->with('message', '住所が更新されました!');
+        return redirect('/purchase/address/' . $item_id)->with('message', '住所が更新されました!');
     }
 }
