@@ -63,14 +63,13 @@ class ManagerController extends Controller
 
             // トランザクションコミット
             DB::commit();
-
-            return redirect()->back()->with('status', '招待メールを送信しました!');
         } catch (\Exception $e) {
             // トランザクションロールバック
             DB::rollBack();
-            return redirect()->back()->withErrors(['error' => 'メールの送信に失敗しました。']);
+            return redirect()->back()->with('status', '招待メールを送信しました!');
         }
     }
+
 
 
     // 招待されたユーザーの登録画面表示

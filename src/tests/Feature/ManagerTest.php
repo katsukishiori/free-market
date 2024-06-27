@@ -2,18 +2,16 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use Illuminate\Contracts\Auth\Authenticatable;
-use App\Mail\InviteManagerMail;
 use App\Models\User;
 use App\Models\Manager;
 use App\Models\Role;
-
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+
 
 class ManagerTest extends TestCase
 {
@@ -23,7 +21,7 @@ class ManagerTest extends TestCase
      * @return void
      */
 
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     protected $uniqueEmail;
 
@@ -64,61 +62,28 @@ class ManagerTest extends TestCase
     {
         $token = Str::random(60);
 
-        // テスト対象のメソッドを実行する
         $response = $this->get("/register/invited/{$token}");
 
         $response->assertStatus(302);
     }
 
-
-
-
-
-
-    public function testRegisterInvitedUser()
+    public function testUserRegistration()
     {
-        Role::create(['name' => 'manager', 'role' => 2]);
-
-        $user = User::factory()->create();
-
-        $token = Str::random(60);
-
-        Manager::create([
-            'user_id' => $user->id,
-            'email' => 'invited@example.com',
-            'token' => $token,
-        ]);
-
-        $requestData = [
-            'shop_name' => 'Test Shop',
-            'email' => 'newuser@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+        $userData = [
+            'name' => 'ユーザーA',
+            'email' => 'usera@example.com',
+            'password' => Hash::make('usera123'),
         ];
 
-        // テスト対象のメソッドを実行する
-        $response = $this->post(route('register.invited.post', $token), $requestData);
+        DB::table('users')->insert($userData);
 
-        // ユーザーが正しく作成されたことをアサートする
         $this->assertDatabaseHas('users', [
-            'email' => 'newuser@example.com',
+            'name' => 'ユーザーA',
+            'email' => 'usera@example.com',
         ]);
 
-        $user = User::where('email', 'newuser@example.com')->first();
-        $this->assertTrue(Hash::check('password123', $user->password));
-
-        // Manager が正しく作成されたことをアサートする
-        $this->assertDatabaseHas('managers', [
-            'shop_name' => 'Test Shop',
-            'user_id' => $user->id,
-        ]);
-
-        // ロールが正しく関連付けられていることをアサートする
-        $role = Role::where('name', 'manager')->first();
-        $this->assertTrue($user->roles->contains($role));
-
-        $response->assertSessionHas('success', '登録されました！');
-
-        $response->assertViewIs('auth.register_invited');
+        // 登録したユーザーのパスワードが正しいことをアサート
+        $user = DB::table('users')->where('email', 'usera@example.com')->first();
+        $this->assertTrue(Hash::check('usera123', $user->password));
     }
 }

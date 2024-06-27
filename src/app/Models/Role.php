@@ -11,14 +11,9 @@ class Role extends Model
     use HasFactory;
     use SoftDeletes;
 
-    // public function users()
-    // {
-    //     return $this->belongsToMany(User::class)->withPivot('manager_id')->withTimestamps();
-    // }
-
     protected $fillable = [
         'role',
-        'name'// 一括代入可能な属性を追加する
+        'name'
     ];
 
     public $timestamps = false;

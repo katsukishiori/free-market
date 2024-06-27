@@ -3,21 +3,15 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
+use App\Models\RoleUser;
 
-use Illuminate\Support\Facades\Event; // Eventを追加
-use Illuminate\Auth\Events\Registered; // Registeredを追加
-use App\Models\RoleUser; // RoleUserモデルを追加
-use App\Models\Manager;
-use App\Models\User;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -29,22 +23,18 @@ class FortifyServiceProvider extends ServiceProvider
         //
     }
 
-
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
-        // Registeredイベントのリスナーを登録
         Event::listen(Registered::class, function (Registered $event) {
-            // ユーザーを取得
+
             $user = $event->user;
 
-            // ロールとマネージャーを設定
-            $roleId = 3; // ロールIDが3の場合
-            $managerId = 999; // マネージャーIDが999の場合
+            $roleId = 3;
+            $managerId = 999;
 
-            // role_userテーブルにデータを保存
             RoleUser::create([
                 'user_id' => $user->id,
                 'role_id' => $roleId,

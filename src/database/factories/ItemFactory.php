@@ -20,7 +20,7 @@ class ItemFactory extends Factory
             'description' => $this->faker->sentence,
             'price' => $this->faker->numberBetween(100, 10000),
             'user_id' => \App\Models\User::factory(),
-            'condition_id' => Condition::factory()->create()->id, // Condition モデルのファクトリーを使用してランダムな condition_id を設定
+            'condition_id' => Condition::factory()->create()->id,
             'img_url' => 'default.jpg',
         ];
     }

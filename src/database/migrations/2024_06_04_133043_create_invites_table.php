@@ -11,6 +11,7 @@ class CreateInvitesTable extends Migration
      *
      * @return void
      */
+
     public function up()
     {
         Schema::create('invites', function (Blueprint $table) {

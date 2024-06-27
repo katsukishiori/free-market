@@ -31,7 +31,8 @@ class InviteManagerMail extends Mailable
 
     public function build()
     {
-        return $this->view('mails.manager_mail')
+        return $this->subject('Manager Invitation')
+            ->view('mails.manager_mail')
             ->with('details', $this->message);
     }
 }
