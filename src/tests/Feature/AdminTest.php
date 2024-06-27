@@ -26,38 +26,32 @@ class AdminTest extends TestCase
 
     public function testIndex()
     {
-        // テストに必要なデータを作成
         $user = User::factory()->create();
-        $manager = Manager::factory()->create(['id' => 999]); // manager_id が 999 のマネージャーを作成
+        $manager = Manager::factory()->create(['id' => 999]);
 
-        // Role モデルのファクトリーを使用して role_id が 1 のデータを作成
         Role::factory()->create(['id' => 1, 'name' => 'Administrator']);
 
-        // ユーザーに役割を割り当てる（role_user テーブルにデータを挿入）
-        $user->roles()->attach(1, ['manager_id' => 999]); // role_id が 1 の役割と manager_id が 999 のマネージャーを割り当てる
+        $user->roles()->attach(1, ['manager_id' => 999]);
 
         /** @var Authenticatable $user */
-        // 認証済みのユーザーとしてアクセス
+
         $response = $this->actingAs($user)->get(route('admin'));
 
-        // レスポンスのステータスコードが正しいことを確認
         $response->assertStatus(200);
 
-        // ビューに 'users' 変数が渡されていることを確認
         $response->assertViewHas('users');
     }
 
 
     public function testMessagesSearch()
     {
-        $item = Item::factory()->create(['name' => 'Test Item']); // テスト用の商品を作成
-        $comment = Comment::factory()->create(['item_id' => $item->id]); // 商品に関連するコメントを作成
+        $item = Item::factory()->create(['name' => 'Test Item']);
+        $comment = Comment::factory()->create(['item_id' => $item->id]);
         $controller = new AdminController();
-        $request = new Request(['item' => 'Test']); // 商品名でのリクエストをシミュレート
+        $request = new Request(['item' => 'Test']);
         $response = $controller->messages($request);
         $comments = $response->getData()['comments'];
 
-        // フィルタリングされたコメントが正しい商品に関連していることを確認
         $this->assertTrue($comments->contains('item_id', $item->id));
     }
 }
