@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\Role;
+use App\Models\Invite;
 use App\Mail\InviteManagerMail;
 use Illuminate\Support\Facades\Mail;
 
@@ -28,7 +29,6 @@ class ManagerController extends Controller
         return view('manager', compact('users'));
     }
 
-    // 招待メール送信
     public function sendInviteManagerEmail(Request $request)
     {
         $request->validate([
@@ -43,7 +43,8 @@ class ManagerController extends Controller
         DB::beginTransaction();
 
         try {
-            Manager::create([
+            // Invitesテーブルにデータを保存
+            Invite::create([
                 'user_id' => $user->id,
                 'email' => $email,
                 'token' => $token,
@@ -71,10 +72,11 @@ class ManagerController extends Controller
         }
     }
 
+
     // 招待されたユーザーの登録画面表示
     public function showInvitedUserRegistrationForm($token)
     {
-        $invitation = Manager::where('token', $token)->firstOrFail();
+        $invitation = Invite::where('token', $token)->firstOrFail();
         return view('auth.register_invited', ['token' => $token]);
     }
 

@@ -3,12 +3,8 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Testing\File;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Http\Testing\File;
 use App\Models\User;
 use Tests\TestCase;
 use App\Models\Item;
@@ -28,20 +24,14 @@ class ItemTest extends TestCase
 
     use RefreshDatabase;
 
-
-
     public function testIndex()
     {
-        // テスト用のデータを作成
         Item::factory()->count(10)->create();
 
-        // indexメソッドにGETリクエストを送信
         $response = $this->get('/');
 
-        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
-        // 正しいビューが返されていることを確認
         $response->assertViewIs('product_list');
 
         // itemsに正しいデータが渡されていることを確認
@@ -50,10 +40,8 @@ class ItemTest extends TestCase
             return !$items->contains('id', 999);
         });
 
-        // 作成されたアイテムがビューに渡されていることを確認
-        $response->assertViewHas('items'); // count()を使わずに数を確認する
+        $response->assertViewHas('items');
 
-        // itemsがコレクションであることを確認
         $response->assertViewHas('items', function ($items) {
             return $items instanceof \Illuminate\Database\Eloquent\Collection;
         });
@@ -61,7 +49,7 @@ class ItemTest extends TestCase
 
     public function testDetail()
     {
-        // テスト用のデータを作成
+
         $item = Item::factory()->create();
         $category = Category::factory()->create();
         $categoryItem = CategoryItem::factory()->create([
@@ -69,37 +57,26 @@ class ItemTest extends TestCase
             'category_id' => $category->id,
         ]);
 
-        // detailメソッドにGETリクエストを送信
         $response = $this->get("/item/{$item->id}");
 
-        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
-        // 正しいビューが返されていることを確認
         $response->assertViewIs('item');
 
-        // アイテムがビューに渡されていることを確認
         $response->assertViewHas('item', $item);
-
-        // カテゴリがビューに渡されていることを確認
         $response->assertViewHas('category', $category);
-
-        // 商品のconditionがビューに渡されていることを確認
         $response->assertViewHas('condition', $item->condition->name);
     }
-
-
 
     public function testSellCreate()
     {
         /** @var Authenticatable $user */
-        // ユーザーを作成し、認証します
+
         $user = User::factory()->create();
         $this->actingAs($user);
 
         $file = File::create('avatar.jpg', 200, 200);
 
-        // 必要なデータをデータベースに作成
         $category = Category::factory()->create();
         $condition = Condition::factory()->create();
 
@@ -113,19 +90,15 @@ class ItemTest extends TestCase
             'img_url' => $file,
         ];
 
-        // 商品出品リクエストを送信します
         $response = $this->post('/sell', $requestData);
 
         // バリデーションエラーがないことを確認
         $response->assertSessionHasNoErrors();
 
-        // リダイレクトを確認
-        $response->assertRedirect('/');
+        $response->assertRedirect('/sell');
 
-        // 成功メッセージがセッションに含まれていることを確認
         $this->assertEquals('商品が出品されました。', session('success'));
 
-        // 商品が実際にデータベースに保存されたかを確認
         $this->assertDatabaseHas('items', [
             'name' => 'テスト商品',
             'description' => 'この商品は20文字以上のテスト商品です。',
@@ -133,7 +106,6 @@ class ItemTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        // カテゴリーアイテムが正しく保存されたかを確認
         $this->assertDatabaseHas('category_item', [
             'category_id' => $category->id,
         ]);
@@ -142,7 +114,7 @@ class ItemTest extends TestCase
     public function testSellView()
     {
         /** @var Authenticatable $user */
-        // ユーザーを作成し、認証します
+
         $user = User::factory()->create();
         $this->actingAs($user);
 

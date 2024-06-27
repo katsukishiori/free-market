@@ -15,7 +15,6 @@ class Manager extends Model
     protected $fillable = [
         'user_id',
         'shop_name',
-        'token',
     ];
 
     public function user()

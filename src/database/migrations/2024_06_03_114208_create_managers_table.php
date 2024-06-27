@@ -17,7 +17,6 @@ class CreateManagersTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('shop_name', 255)->default('');
-            $table->string('token')->nullable();
             $table->boolean('accepted')->default(false);
             $table->timestamps();
             $table->softDeletes();

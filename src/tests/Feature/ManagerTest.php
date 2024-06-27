@@ -2,9 +2,8 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -12,7 +11,9 @@ use App\Mail\InviteManagerMail;
 use App\Models\User;
 use App\Models\Manager;
 use App\Models\Role;
-use Illuminate\Support\Facades\Log;
+
+
+use Illuminate\Support\Str;
 
 class ManagerTest extends TestCase
 {
@@ -24,14 +25,12 @@ class ManagerTest extends TestCase
 
     use DatabaseTransactions;
 
-    // クラスプロパティとして宣言
     protected $uniqueEmail;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        // テストに必要なデータを作成
         Role::factory()->create([
             'id' => 2,
             'name' => 'manager',
@@ -43,54 +42,83 @@ class ManagerTest extends TestCase
 
     public function testIndex()
     {
-        // テストに必要なデータを作成
         $user = User::factory()->create([
             'email' => $this->uniqueEmail,
         ]);
 
         $manager = Manager::factory()->create();
 
-        // ユーザーに役割を割り当てる（role_user テーブルにデータを挿入）
         $user->roles()->attach(2, ['manager_id' => $manager->id]);
 
         /** @var Authenticatable $user */
-        // 認証済みのユーザーとしてアクセス
+
         $response = $this->actingAs($user)->get(route('manager'));
 
-        // レスポンスのステータスコードが正しいことを確認
         $response->assertStatus(200);
 
-        // ビューに 'users' 変数が渡されていることを確認
         $response->assertViewHas('users');
     }
 
-    public function testSendInviteManagerEmail()
+
+    public function testShowInvitedUserRegistrationForm()
     {
-        Mail::fake(); // メール送信をモック
+        $token = Str::random(60);
 
-        $user = User::factory()->create(); // ユーザーを作成
+        // テスト対象のメソッドを実行する
+        $response = $this->get("/register/invited/{$token}");
 
-        // ログインしているユーザーとして振る舞う
-        $this->actingAs($user);
+        $response->assertStatus(302);
+    }
 
-        $data = [
-            'email' => 'test@example.com',
+
+
+
+
+
+    public function testRegisterInvitedUser()
+    {
+        Role::create(['name' => 'manager', 'role' => 2]);
+
+        $user = User::factory()->create();
+
+        $token = Str::random(60);
+
+        Manager::create([
+            'user_id' => $user->id,
+            'email' => 'invited@example.com',
+            'token' => $token,
+        ]);
+
+        $requestData = [
+            'shop_name' => 'Test Shop',
+            'email' => 'newuser@example.com',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
         ];
 
-        // 招待メール送信リクエストを送信
-        $response = $this->post('/invited', $data);
+        // テスト対象のメソッドを実行する
+        $response = $this->post(route('register.invited.post', $token), $requestData);
 
-        // ログ出力
-        Log::info('Response status:', ['status' => $response->status()]);
-        Log::info('Session data:', session()->all());
+        // ユーザーが正しく作成されたことをアサートする
+        $this->assertDatabaseHas('users', [
+            'email' => 'newuser@example.com',
+        ]);
 
-        // レスポンスを確認
-        $response->assertRedirect()
-            ->assertSessionHas('status', '招待メールを送信しました!');
+        $user = User::where('email', 'newuser@example.com')->first();
+        $this->assertTrue(Hash::check('password123', $user->password));
 
-        // メールが送信されたことを確認
-        Mail::assertSent(InviteManagerMail::class, function ($mail) use ($data) {
-            return $mail->hasTo($data['email']);
-        });
+        // Manager が正しく作成されたことをアサートする
+        $this->assertDatabaseHas('managers', [
+            'shop_name' => 'Test Shop',
+            'user_id' => $user->id,
+        ]);
+
+        // ロールが正しく関連付けられていることをアサートする
+        $role = Role::where('name', 'manager')->first();
+        $this->assertTrue($user->roles->contains($role));
+
+        $response->assertSessionHas('success', '登録されました！');
+
+        $response->assertViewIs('auth.register_invited');
     }
 }

@@ -3,12 +3,9 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CommentController;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Role;

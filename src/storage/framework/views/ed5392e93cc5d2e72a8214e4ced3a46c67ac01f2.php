@@ -46,15 +46,15 @@
         </div>
         <div class="content_class" id="content2">
             <div class="image-container">
-                <?php $__currentLoopData = $soldItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $soldItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($soldItem->item): ?>
-                <div>
-                    <a href="<?php echo e(route('item.detail', ['item_id' => $soldItem->item->id])); ?>">
-                        <img src="<?php echo e(asset('storage/images/' . $soldItem->item->img_url)); ?>" alt="<?php echo e($soldItem->item->name); ?>の画像">
-                    </a>
-                </div>
-                <?php else: ?>
-                <p>関連するアイテムが見つかりません。</p>
+                <?php $__currentLoopData = $items; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php
+                // アイテムがいいねされているかをチェック
+                $isLiked = $item->likes()->where('user_id', auth()->id())->exists();
+                ?>
+                <?php if($isLiked): ?>
+                <a href="<?php echo e(route('item.detail', ['item_id' => $item->id])); ?>">
+                    <img src="<?php echo e(asset('storage/images/' . $item->img_url)); ?>" alt="<?php echo e($item->name); ?>の画像">
+                </a>
                 <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
