@@ -24,6 +24,7 @@
                         <input type="password" name="password" placeholder="なにをお探しですか?" />
                     </div>
                 </div>
+
                 <div class="right-section">
                     <nav class="nav">
                         <ul class="header-nav">

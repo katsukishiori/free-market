@@ -53,6 +53,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">住所</span>
@@ -76,6 +77,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
+
             <div class="form__group">
                 <div class="form__group-title">
                     <span class="form__label--item">建物名</span>
@@ -99,10 +101,13 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                 </div>
             </div>
+
             <div class="form__button">
                 <button class="form__button-submit" type="submit">変更する</button>
             </div>
+
         </form>
+
     </div>
 
 </body><?php /**PATH /var/www/resources/views/address_change.blade.php ENDPATH**/ ?>

@@ -37,10 +37,9 @@ class PurchaseTest extends TestCase
 
         $this->artisan('migrate');
 
-        $response = $this->actingAs($user)->post("/purchase/{$item->id}", [
-        ]);
+        $response = $this->actingAs($user)->post("/purchase/{$item->id}");
 
-        $response->assertRedirect('/mypage');
+        $response->assertRedirect(route('purchase', ['item_id' => $item->id]));
 
         $this->assertDatabaseHas('sold_item', [
             'item_id' => $item->id,
