@@ -6,7 +6,7 @@
 ## アプリケーションURL  
 開発環境:http://localhost/  
 phpMyAdmin:http://localhost:8080/  
-## 他のリポジトリ  
+  
 ## 機能一覧  
 ・会員登録機能  
 ・ログイン機能  
